@@ -1,0 +1,7 @@
+{
+  "name": "Palabrick",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
