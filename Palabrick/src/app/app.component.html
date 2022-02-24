@@ -1,39 +1,41 @@
 <ion-app>
-  <ion-menu content-id="main-content">
-    <ion-header>
-      <ion-toolbar color="primary">
-        <ion-title>Menú principal</ion-title>
-      </ion-toolbar>
-    </ion-header>
-
+  <ion-menu contentId="main-content" type="overlay">
     <ion-content>
-      <ion-list>
-        <ion-list-header> Opciones </ion-list-header>
-        <ion-menu-toggle auto-hide="false">
-          <ion-item button routerLink="ayuda">
-            <ion-icon slot="start" name="information-circle-outline"></ion-icon>
-            <ion-label> AYUDA </ion-label>
+      <ion-list id="inbox-list">
+        <ion-list-header>Menú</ion-list-header>
+        <ion-note>Inicia sesión</ion-note>
+
+        <ion-menu-toggle auto-hide="false" *ngFor="let e of gamePages; let i = index">
+          <ion-item routerDirection="root" [routerLink]="[e.url]" lines="none" detail="false" routerLinkActive="selected">
+            <ion-icon slot="start" [ios]="e.icon + '-outline'" [md]="e.icon + '-sharp'"></ion-icon>
+            <ion-label>{{ e.title }}</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+
+      <ion-list id="misc-list">
+        <ion-menu-toggle auto-hide="false" *ngFor="let e of miscPages; let i = index">
+          <ion-item routerDirection="root" [routerLink]="[e.url]" lines="none" detail="false" routerLinkActive="selected">
+            <ion-icon slot="start" [ios]="e.icon + '-outline'" [md]="e.icon + '-sharp'"></ion-icon>
+            <ion-label>{{ e.title }}</ion-label>
           </ion-item>
         </ion-menu-toggle>
       </ion-list>
     </ion-content>
   </ion-menu>
-
-  <ion-page class="ion-page" id="main-content">
-    <ion-header>
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-menu-toggle>
-            <ion-button>
-              <ion-icon slot="icon-only" name="menu"></ion-icon>
-            </ion-button>
-          </ion-menu-toggle>
-        </ion-buttons>
-        <ion-title>PALABRICK</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content class="ion-padding">
-      <ion-router-outlet></ion-router-outlet>
-    </ion-content>
-  </ion-page>
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Palabrick</ion-title>
+      <span slot="end" *ngFor="let e of gamePages; let i = index">
+        <a *ngIf="e.showToolbar === true" class="nav-link" routerDirection="root" routerLinkActive="active" [routerLink]="[e.url]"><ion-icon class="toolbar-icon" [ios]="e.icon + '-outline'" [md]="e.icon + '-sharp'"></ion-icon></a>
+      </span>
+      <span slot="end" *ngFor="let e of miscPages; let i = index">
+        <a *ngIf="e.showToolbar === true" class="nav-link" routerDirection="root" routerLinkActive="active" [routerLink]="[e.url]"><ion-icon class="toolbar-icon" [ios]="e.icon + '-outline'" [md]="e.icon + '-sharp'"></ion-icon></a>
+      </span>
+    </ion-toolbar>
+  </ion-header>
+  <ion-router-outlet id="main-content"></ion-router-outlet>
 </ion-app>

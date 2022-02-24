@@ -1,0 +1,30 @@
+
+{
+    "resultadoPartida": {
+        "resultado": "2",
+        "fecha_inicio": 11434394903000,
+        "fecha_fin": 11434395323000,
+        "intentos": [
+            {
+                "palabra": "HELIO",
+                "letra1": 1,
+                "letra2": -1,
+                "letra3": 0,
+                "letra4": 0,
+                "letra5": 1
+            },
+            {
+                "palabra": "HUEVO",
+                "letra1": 1,
+                "letra2": 1,
+                "letra3": 1,
+                "letra4": 1,
+                "letra5": 1
+            }
+        ]
+    }
+}
+
+
+localStorage:
+resultados: { "0": 0, "1": 0, "2": 1, "3": 4, "4": 4, "5": 3, "6": 1}
