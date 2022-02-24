@@ -3,11 +3,11 @@ import { ToolbarOptions } from 'src/app/services/toolbar-options';
 import { ToolbarOptionsService } from 'src/app/services/toolbar-options.service';
 
 @Component({
-  selector: 'app-estadisticas',
-  templateUrl: './estadisticas.component.html',
-  styleUrls: ['./estadisticas.component.scss'],
+  selector: 'app-compartir',
+  templateUrl: './compartir.component.html',
+  styleUrls: ['./compartir.component.scss'],
 })
-export class EstadisticasComponent implements OnInit {
+export class CompartirComponent implements OnInit {
 
   // Propiedades ==================================================
 
@@ -20,9 +20,9 @@ export class EstadisticasComponent implements OnInit {
     this.toolbarOptions = new ToolbarOptions();
     this.toolbarOptions.game = true;
     this.toolbarOptions.lastGame = true;
-    this.toolbarOptions.statistics = false;
+    this.toolbarOptions.statistics = true;
     this.toolbarOptions.help = false;
-    this.toolbarOptions.credits = true;
+    this.toolbarOptions.credits = false;
     this.toolbarOptions.settings = true;
   }
 

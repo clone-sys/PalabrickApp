@@ -30,10 +30,10 @@
       </ion-buttons>
       <ion-title>Palabrick</ion-title>
       <span slot="end" *ngFor="let e of gamePages; let i = index">
-        <a *ngIf="e.showToolbar === true" class="nav-link" routerDirection="root" routerLinkActive="active" [routerLink]="[e.url]"><ion-icon class="toolbar-icon" [ios]="e.icon + '-outline'" [md]="e.icon + '-sharp'"></ion-icon></a>
+        <a *ngIf="e.showToolbar === true" class="nav-link" [title]="e.title" routerDirection="root" routerLinkActive="active" [routerLink]="[e.url]"><ion-icon class="toolbar-icon" [alt]="e.title" [ios]="e.icon + '-outline'" [md]="e.icon + '-sharp'"></ion-icon></a>
       </span>
       <span slot="end" *ngFor="let e of miscPages; let i = index">
-        <a *ngIf="e.showToolbar === true" class="nav-link" routerDirection="root" routerLinkActive="active" [routerLink]="[e.url]"><ion-icon class="toolbar-icon" [ios]="e.icon + '-outline'" [md]="e.icon + '-sharp'"></ion-icon></a>
+        <a *ngIf="e.showToolbar === true" class="nav-link" [title]="e.title" routerDirection="root" routerLinkActive="active" [routerLink]="[e.url]"><ion-icon class="toolbar-icon" [alt]="e.title" [ios]="e.icon + '-outline'" [md]="e.icon + '-sharp'"></ion-icon></a>
       </span>
     </ion-toolbar>
   </ion-header>
