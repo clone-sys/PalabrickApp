@@ -22,7 +22,7 @@ export class PalabrasService {
 
   constructor(private http: HttpClient) {
 
-    //this.obtenerFicheroPalabras(); //.subscribe(json => this.palabras = json);
+    this.obtenerFicheroPalabras();
 
   }
 
