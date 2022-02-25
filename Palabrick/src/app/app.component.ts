@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { ToolbarOptions } from './services/toolbar-options';
+import { ToolbarOptions } from './classes/toolbar-options';
 import { ToolbarOptionsService } from './services/toolbar-options.service';
 
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ToolbarOptions } from 'src/app/services/toolbar-options';
+import { ToolbarOptions } from 'src/app/classes/toolbar-options';
 import { ToolbarOptionsService } from 'src/app/services/toolbar-options.service';
 import { TableroComponent } from './tablero/tablero.component';
 import { TecladoComponent } from './teclado/teclado.component';
