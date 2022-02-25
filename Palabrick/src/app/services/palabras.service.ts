@@ -14,7 +14,7 @@ export class PalabrasService {
   // Array de palabras del diccionario
   public palabras: Array<string> = [];
 
-  public fileLoaded = false;
+  public readyStatus = false;
 
   // Palabra objetivo
   private palabraActual: string = "";
@@ -38,13 +38,13 @@ export class PalabrasService {
    */
   public async obtenerFicheroPalabras(): Promise<void> {
 
-    this.fileLoaded = false;
+    this.readyStatus = false;
 
     //this.http.get<Array<string>>(URL_SERVIDOR).subscribe(json => this.palabras = json);
       await fetch(URL_SERVIDOR)
         .then(response => response.json()
         .then(data => this.palabras = data))
-        .then(() => console.log("completado"))
+        .then(() => this.readyStatus = true)
         .catch(err => console.log(err));
 
   }
@@ -58,10 +58,7 @@ export class PalabrasService {
 
     const numero = Math.floor(Math.random() * (this.palabras.length));
 
-    console.log(this.palabras)
     let p = this.palabras[numero];
-
-    console.log(p)
 
     return p;
   }
@@ -165,8 +162,6 @@ export class PalabrasService {
     this.palabraActual = this.obtenerPalabraRandom();
     this.semiaciertosIndice = [];
 
-    console.log(this.palabraActual);
-
     return this.palabraActual;
 
   }
@@ -183,7 +178,6 @@ export class PalabrasService {
    **/
   public validarPalabra(palabra: string, metodoExtendido: boolean = false): Array<number> {
 
-    console.log(palabra)
     const palabras = palabra.toUpperCase().split('');
 
 
@@ -210,10 +204,7 @@ export class PalabrasService {
    **/
   public comprobarPalabra(pal: string): boolean {
 
-    console.log(pal)
     const i = this.palabras.includes(pal.toUpperCase());
-
-    console.log(i);
 
     return i;
 
