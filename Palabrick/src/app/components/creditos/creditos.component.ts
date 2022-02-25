@@ -21,6 +21,7 @@ export class CreditosComponent implements OnInit {
     this.toolbarOptions.game = true;
     this.toolbarOptions.lastGame = true;
     this.toolbarOptions.statistics = true;
+    this.toolbarOptions.share = true;
     this.toolbarOptions.help = false;
     this.toolbarOptions.credits = false;
     this.toolbarOptions.settings = true;

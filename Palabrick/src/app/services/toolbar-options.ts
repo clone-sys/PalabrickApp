@@ -5,6 +5,7 @@ export class ToolbarOptions {
     game: boolean;
     lastGame: boolean;
     statistics: boolean;
+    share: boolean;
     help: boolean;
     credits: boolean;
     settings: boolean;
@@ -16,6 +17,7 @@ export class ToolbarOptions {
         this.game = false;
         this.lastGame = false;
         this.statistics = false;
+        this.share = false;
         this.help = false;
         this.credits = false;
         this.settings = true;

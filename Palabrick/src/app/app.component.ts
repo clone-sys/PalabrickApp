@@ -16,7 +16,8 @@ export class AppComponent {
   public gamePages = [
     { name: 'game', title: 'Juego', url: '/juego', icon: 'game-controller', showToolbar: false },
     { name: 'lastGame', title: 'Resultado última partida', url: '/resultadoPartida', icon: 'trophy', showToolbar: false },
-    { name: 'statistics', title: 'Estadísticas', url: '/estadisticas', icon: 'stats-chart', showToolbar: false }
+    { name: 'statistics', title: 'Estadísticas', url: '/estadisticas', icon: 'stats-chart', showToolbar: false },
+    { name: 'share', title: 'Compartir', url: '/compartir', icon: 'share-social', showToolbar: false }
   ];
 
   public miscPages = [

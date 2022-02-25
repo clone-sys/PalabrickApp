@@ -23,6 +23,7 @@ export class JuegoComponent implements OnInit {
     this.toolbarOptions.game = false;
     this.toolbarOptions.lastGame = true;
     this.toolbarOptions.statistics = true;
+    this.toolbarOptions.share = true;
     this.toolbarOptions.help = true;
     this.toolbarOptions.credits = true;
     this.toolbarOptions.settings = true;

@@ -21,6 +21,7 @@ export class EstadisticasComponent implements OnInit {
     this.toolbarOptions.game = true;
     this.toolbarOptions.lastGame = true;
     this.toolbarOptions.statistics = false;
+    this.toolbarOptions.share = true;
     this.toolbarOptions.help = false;
     this.toolbarOptions.credits = true;
     this.toolbarOptions.settings = true;

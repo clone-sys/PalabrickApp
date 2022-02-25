@@ -21,8 +21,9 @@ export class CompartirComponent implements OnInit {
     this.toolbarOptions.game = true;
     this.toolbarOptions.lastGame = true;
     this.toolbarOptions.statistics = true;
+    this.toolbarOptions.share = false;
     this.toolbarOptions.help = false;
-    this.toolbarOptions.credits = false;
+    this.toolbarOptions.credits = true;
     this.toolbarOptions.settings = true;
   }
 

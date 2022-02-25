@@ -21,6 +21,7 @@ export class ResultadoPartidaComponent implements OnInit {
     this.toolbarOptions.game = true;
     this.toolbarOptions.lastGame = false;
     this.toolbarOptions.statistics = true;
+    this.toolbarOptions.share = true;
     this.toolbarOptions.help = false;
     this.toolbarOptions.credits = true;
     this.toolbarOptions.settings = true;
