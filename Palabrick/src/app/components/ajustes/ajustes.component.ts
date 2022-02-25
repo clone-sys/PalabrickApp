@@ -16,7 +16,7 @@ export class AjustesComponent implements OnInit {
 
   // Métodos ==================================================
 
-  constructor(public ToolbarOptionsService:ToolbarOptionsService) {
+  constructor(public toolbarOptionsService: ToolbarOptionsService) {
     this.toolbarOptions = new ToolbarOptions();
     this.toolbarOptions.game = true;
     this.toolbarOptions.lastGame = true;
@@ -28,6 +28,6 @@ export class AjustesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.ToolbarOptionsService.changeToolbarOptions(this.toolbarOptions);
+    this.toolbarOptionsService.changeToolbarOptions(this.toolbarOptions);
   }
 }
