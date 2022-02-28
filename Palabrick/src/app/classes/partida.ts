@@ -20,6 +20,11 @@ export class Partida {
     }
 
 
+    cargarDesdeArrayJSON() {
+        
+    }
+
+
     insertarIntento(intento: IntentoPartida) {
         this.intentos.push(intento);
     }
