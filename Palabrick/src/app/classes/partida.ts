@@ -1,7 +1,7 @@
 import { IntentoPartida } from "./intento-partida";
 
 export class Partida {
-    
+
     // Propiedades ==================================================
 
     resultado: number;

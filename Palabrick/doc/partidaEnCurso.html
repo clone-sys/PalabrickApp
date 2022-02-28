@@ -1,0 +1,17 @@
+<html>
+<head>
+    <title>Cargar partidaEnCurso en el LocalStorage</title>
+</head>
+<body>
+<script>
+
+let partidaEnCurso_json = '{"resultadoPartida": {"resultado": "3","fecha_inicio": 11434394903000,"fecha_fin": 11434395323000,"intentos": [{"palabra": "HELIO","letra1": 1,"letra2": -1,"letra3": 0,"letra4": 0,"letra5": 1},{"palabra": "FIDEO","letra1": 0,"letra2": 0,"letra3": 0,"letra4": -1,"letra5": -1},{"palabra": "HUEVO","letra1": 1,"letra2": 1,"letra3": 1,"letra4": 1,"letra5": 1}]}}';
+let partidaEnCurso_array = JSON.parse(partidaEnCurso_json);
+console.log(partidaEnCurso_json);
+console.log(partidaEnCurso_array);
+localStorage.setItem('PartidaEnCurso', partidaEnCurso_json);
+
+</script>
+Mirar el ConsoleLog
+</body>
+</html>
