@@ -21,4 +21,5 @@ export class IdiomaService {
     withCredentials?: boolean,
   };
   constructor(private http: HttpClient) { }
+  /// TODO: @mgonblan Llamar a un API de servicio con idiomas
 }

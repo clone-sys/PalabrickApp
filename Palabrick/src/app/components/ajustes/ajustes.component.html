@@ -1,22 +1,33 @@
 <ion-list>
+  <ion-list-header lines="inset">
+    <ion-label>General Settings</ion-label>
+  </ion-list-header>
   <ion-item>
     <ion-label>Dark Mode</ion-label>
-    <ion-toggle slot="start" name="optDarkMode" checked></ion-toggle>
+    <ion-toggle slot="start" ng></ion-toggle>   
   </ion-item>
 
+  <ion-item>
+    <ion-label>Accesibility</ion-label>
+    <ion-toggle slot="start"></ion-toggle> 
+  </ion-item>
+
+  <ion-list-header lines="inset">
+    <ion-label>Game Settings</ion-label>
+  </ion-list-header>
   <ion-item>
     <ion-label>Hard Mode</ion-label>
-    <ion-toggle slot="start" name="optHardMode" color="secondary" checked></ion-toggle>
+    <ion-toggle slot="start"></ion-toggle>   
   </ion-item>
-
   <ion-item>
-    <ion-label>save game</ion-label>
-    <ion-toggle slot="start" name="optSaveGame" color="tertiary" checked></ion-toggle>
+    <ion-label>Save state game</ion-label>
+    <ion-toggle slot="start"></ion-toggle>   
   </ion-item>
-
   <ion-item>
-    <ion-label>Jugar con palabras inventadas</ion-label>
-    <ion-toggle slot="start" name="banana" color="warning" checked="false"></ion-toggle>
+    <ion-label>Accept not valid words</ion-label>
+    <ion-toggle slot="start"></ion-toggle> 
   </ion-item>
-  
+  <ion-item>
+    <ion-input type="number" min="0" placeholder="Insert max number of retries"></ion-input>   
+  </ion-item>
 </ion-list>
