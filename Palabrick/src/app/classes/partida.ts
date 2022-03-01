@@ -30,9 +30,9 @@ export class Partida {
 
 
     insertarIntento(intento: IntentoPartida) {
-        let timestampNow = new Date();
-
         this.intentos.push(intento);
+        
+        let timestampNow = new Date();
 
         // Actualizo la fecha de inicio/fin
         if( this.intentos.length == 1 ) {
@@ -49,30 +49,6 @@ export class Partida {
         }
         else if( this.intentos.length == 6 ) {
             this.resultado = 0;
-        }
-    }
-
-
-    guardarPartidaEnStorage(tipoPartida: string) {
-        if( tipoPartida == 'enCurso' ) {
-            console.log('Guardando evolución de la partida para poder recuperarlo si sale del juego => Utilizar el servicio de Manolo para guardar en el "Storage" que proceda');
-        }
-        else if( tipoPartida == 'finPartida' ) {
-            console.log('Guardando resultado de la partida => Utilizar el servicio de Manolo para guardar en el "Storage" que proceda');
-        }
-        else {
-            console.error('El tipo de partida a guardar no es correcto');
-        }
-    }
-
-
-    recuperarPartidaDeStorage(tipoPartida: string) {
-        if( tipoPartida == 'enCurso' ) {
-        }
-        else if( tipoPartida == 'finPartida' ) {
-        }
-        else {
-            console.error('El tipo de partida a recuperar no es correcto');
         }
     }
 }

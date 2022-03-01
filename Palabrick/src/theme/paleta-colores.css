@@ -1,0 +1,7 @@
+/** CSS Variables con la Paleta de Colores **/
+:root {
+  --letra-normal: #EFEADD;
+  --letra-no-encontrada: #E04E2D;
+  --letra-mal-posicionada: #F6A942;
+  --letra-bien-posicionada: #00C2CB;
+}

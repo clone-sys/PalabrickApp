@@ -1,6 +1,12 @@
 <p>
   juego works!
-
+  <br><br><br>
+  <label for="letra">Introduce una letra (se enviará automáticamente):</label>
+  <br>
+  <input id="letra" name="letra" type="text" size="10" maxlength="1" value="{{tecla}}" (keyup)="pulsarTecla()">
+  <br>
+  <button id="enviarPalabra" name="enviarPalabra">Enviar palabra</button>
+  <br><br><br>
   <app-tablero></app-tablero>
   <app-teclado></app-teclado>
 </p>

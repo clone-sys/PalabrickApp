@@ -7,13 +7,13 @@ import { Observable, Subject } from 'rxjs';
 })
 export class TecladoService {
   // Emisor
-  private keyboardSource = new Subject<string>();
-  newTeclaPulsada: Observable<string> = this.keyboardSource.asObservable();
+  private tecladoSource = new Subject<string>();
+  nuevaTeclaPulsada: Observable<string> = this.tecladoSource.asObservable();
 
   constructor() { }
 
   // Emisor del evento
   teclaPulsada(tecla: string) {
-    this.keyboardSource.next(tecla);
+    this.tecladoSource.next(tecla);
   }
 }
