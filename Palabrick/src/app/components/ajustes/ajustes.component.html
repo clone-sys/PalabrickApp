@@ -4,12 +4,12 @@
   </ion-list-header>
   <ion-item>
     <ion-label>Dark Mode</ion-label>
-    <ion-toggle slot="start" ng></ion-toggle>   
+    <ion-toggle slot="end"></ion-toggle>   
   </ion-item>
 
   <ion-item>
     <ion-label>Accesibility</ion-label>
-    <ion-toggle slot="start"></ion-toggle> 
+    <ion-toggle slot="start" [(ngModel)]="settingsOption"></ion-toggle> 
   </ion-item>
 
   <ion-list-header lines="inset">
@@ -22,10 +22,6 @@
   <ion-item>
     <ion-label>Save state game</ion-label>
     <ion-toggle slot="start"></ion-toggle>   
-  </ion-item>
-  <ion-item>
-    <ion-label>Accept not valid words</ion-label>
-    <ion-toggle slot="start"></ion-toggle> 
   </ion-item>
   <ion-item>
     <ion-input type="number" min="0" placeholder="Insert max number of retries"></ion-input>   

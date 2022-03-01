@@ -7,6 +7,13 @@ export class Settings {
     private _darkMode: boolean;
     private _settingsNumber: number;
     private _saveStateGame: boolean;
+    private _numretries: number;
+    public get numretries(): number {
+        return this._numretries;
+    }
+    public set numretries(value: number) {
+        this._numretries = value;
+    }
     public get saveStategame(): boolean {
         return this._saveStateGame;
     }
