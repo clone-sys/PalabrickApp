@@ -119,7 +119,7 @@ export class PalabrasService {
     else {
       n = letras.indexOf(letra, 0);
 
-      if (n = array.length -1) {
+      if (n == array.length -1) {
         n =-1;
       }
     }
