@@ -3,7 +3,7 @@
   <br><br><br>
   <label for="letra">Introduce una letra (se enviará automáticamente):</label>
   <br>
-  <input id="letra" name="letra" type="text" size="10" maxlength="1" value="{{tecla}}" (keyup)="pulsarTecla()">
+  <input id="letra" name="letra" type="text" size="10" maxlength="5" [(ngModel)]="palabraInput" (keyup)="pulsarTecla($event)">
   <br>
   <button id="enviarPalabra" name="enviarPalabra">Enviar palabra</button>
   <br><br><br>

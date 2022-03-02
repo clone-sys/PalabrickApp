@@ -23,6 +23,7 @@ export class JuegoComponent implements OnInit {
   partidaEnCurso_json: string;
   palabra: string;
   tecla: string;
+  palabraInput: string;
 
 
   // Métodos ==================================================
@@ -40,6 +41,7 @@ export class JuegoComponent implements OnInit {
     this.partidaEnCurso = new Partida();
     this.palabra = '';
     this.tecla = 'A';
+    this.palabraInput = '';
 
     this.TecladoService_subscription = this.TecladoService.nuevaTeclaPulsada.subscribe(
       teclaPulsada => {
@@ -57,9 +59,28 @@ export class JuegoComponent implements OnInit {
   }
 
 
-  pulsarTecla() {
-    console.log(this.tecla);
-    this.tecla = '';
+  pulsarTecla(event) {
+    console.log('this.palabraInput: ' + this.palabraInput);
+    const pattern = /[a-zA-Z]/;
+    const inputValue = event.target.value;
+    const ultimaTeclaPulsada = inputValue.substr(inputValue.length - 1);
+    console.log('ultimaTeclaPulsada: ' + ultimaTeclaPulsada);
+
+    if (!pattern.test(ultimaTeclaPulsada)) {    
+        // invalid character, prevent input
+        event.preventDefault();
+        console.error('"' + ultimaTeclaPulsada + '" NO se acepta. Vacío el campo');
+        //this.palabraInput = '';
+        console.log('this.palabraInput: ' + this.palabraInput);
+    }
+    else {
+      console.error('"' + ultimaTeclaPulsada + '" SÍ se acepta. Vacío el campo y proceso la palabra');
+      this.palabraInput = this.palabraInput.toUpperCase();
+      console.log('this.palabraInput: ' + this.palabraInput);
+    }
+
+    
+    //inputElement.focus();
   }
 
 
