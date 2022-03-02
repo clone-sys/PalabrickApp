@@ -1,5 +1,5 @@
 export class IntentoPartida {
-
+    
     // Propiedades ==================================================
 
     palabra: string;
@@ -12,7 +12,7 @@ export class IntentoPartida {
 
     // Métodos ==================================================
 
-    constructor(palabra: string, letra1: number, letra2: number, letra3: number, letra4: number, letra5: number, ) {
+    constructor( palabra: string, letra1: number, letra2: number, letra3: number, letra4: number, letra5: number ) {
         this.palabra = palabra;
         this.letra1 = letra1;
         this.letra2 = letra2;

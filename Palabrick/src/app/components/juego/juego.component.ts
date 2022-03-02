@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Partida } from 'src/app/classes/partida';
 import { ToolbarOptions } from 'src/app/classes/toolbar-options';
+import { PalabrasService } from 'src/app/services/palabras.service';
 import { TecladoService } from 'src/app/services/teclado.service';
 import { ToolbarOptionsService } from 'src/app/services/toolbar-options.service';
 import { TableroComponent } from './tablero/tablero.component';
@@ -31,7 +32,7 @@ export class JuegoComponent implements OnInit {
 
   // Métodos ==================================================
 
-  constructor(public ToolbarOptionsService:ToolbarOptionsService, public TecladoService:TecladoService) {
+  constructor(public ToolbarOptionsService:ToolbarOptionsService, public PalabrasService:PalabrasService, public TecladoService:TecladoService) {
     this.toolbarOptions = new ToolbarOptions();
     this.toolbarOptions.game = false;
     this.toolbarOptions.lastGame = true;
@@ -81,7 +82,7 @@ export class JuegoComponent implements OnInit {
     console.log('tecla: ' + tecla);
 
     if( tecla == 'ENVIAR' ) {
-
+ 
     }
 
     const pattern = /[a-zA-Z]/;
