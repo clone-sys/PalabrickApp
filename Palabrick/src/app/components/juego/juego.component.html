@@ -1,7 +1,8 @@
-<p>juego works!</p>
-<br><br><br>
-<p></p>
-<p></p>
+<p>{{partidaEnCurso.intentos.length}} / 6</p>
+<p>Fecha inicio: {{partidaEnCurso.fecha_inicio != 0 ? partidaEnCurso.fecha_inicio : '' | date}}</p>
+<p>Fecha fin: {{partidaEnCurso.fecha_fin != 0 ? partidaEnCurso.fecha_fin : '' | date}}</p>
+<p>Letras de este intento: {{partidaEnCurso.intentos[partidaEnCurso.intentos.length-1].palabra}}</p>
+<app-tablero></app-tablero>
 <br>
 <div id="teclado">
   <div *ngFor="let tecla of teclado_linea1" class="tecla" [class]="tecla" (click)="pulsarTecla($event)">{{tecla}}</div>
@@ -10,6 +11,4 @@
   <br>
   <div *ngFor="let tecla of teclado_linea3" class="tecla" [class]="tecla" (click)="pulsarTecla($event)">{{tecla}}</div>
 </div>
-<br><br><br>
-<app-tablero></app-tablero>
 <app-teclado></app-teclado>
