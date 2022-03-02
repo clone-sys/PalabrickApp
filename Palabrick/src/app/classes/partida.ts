@@ -23,7 +23,7 @@ export class Partida {
     cargarDesdeArrayJSON(partidaJson: string) {
         let partida: any = JSON.parse(partidaJson);
 
-        for (let prop in partida) {
+        for( let prop in partida ) {
             this[prop] = partida[prop];
         }
     }

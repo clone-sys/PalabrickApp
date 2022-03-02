@@ -24,6 +24,9 @@ export class JuegoComponent implements OnInit {
   palabra: string;
   tecla: string;
   palabraInput: string;
+  teclado_linea1: string[];
+  teclado_linea2: string[];
+  teclado_linea3: string[];
 
 
   // Métodos ==================================================
@@ -43,6 +46,10 @@ export class JuegoComponent implements OnInit {
     this.tecla = 'A';
     this.palabraInput = '';
 
+    this.teclado_linea1 = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'];
+    this.teclado_linea2 = ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Ñ'];
+    this.teclado_linea3 = ['ENVIAR', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '«'];
+
     this.TecladoService_subscription = this.TecladoService.nuevaTeclaPulsada.subscribe(
       teclaPulsada => {
         this.procesarTecla(teclaPulsada);
@@ -60,27 +67,8 @@ export class JuegoComponent implements OnInit {
 
 
   pulsarTecla(event) {
-    console.log('this.palabraInput: ' + this.palabraInput);
-    const pattern = /[a-zA-Z]/;
-    const inputValue = event.target.value;
-    const ultimaTeclaPulsada = inputValue.substr(inputValue.length - 1);
-    console.log('ultimaTeclaPulsada: ' + ultimaTeclaPulsada);
-
-    if (!pattern.test(ultimaTeclaPulsada)) {    
-        // invalid character, prevent input
-        event.preventDefault();
-        console.error('"' + ultimaTeclaPulsada + '" NO se acepta. Vacío el campo');
-        //this.palabraInput = '';
-        console.log('this.palabraInput: ' + this.palabraInput);
-    }
-    else {
-      console.error('"' + ultimaTeclaPulsada + '" SÍ se acepta. Vacío el campo y proceso la palabra');
-      this.palabraInput = this.palabraInput.toUpperCase();
-      console.log('this.palabraInput: ' + this.palabraInput);
-    }
-
-    
-    //inputElement.focus();
+    let teclita = event.target;
+    console.log(teclita.firstChild.textContent);
   }
 
 
@@ -90,7 +78,26 @@ export class JuegoComponent implements OnInit {
 
 
   procesarTecla(tecla: string) {
+    console.log('tecla: ' + tecla);
 
+    if( tecla == 'ENVIAR' ) {
+
+    }
+
+    const pattern = /[a-zA-Z]/;
+    const ultimaTeclaPulsada = tecla.substr(tecla.length - 1);
+    console.log('ultimaTeclaPulsada: ' + ultimaTeclaPulsada);
+
+    if (!pattern.test(ultimaTeclaPulsada)) {    
+        // invalid character, prevent input
+        console.error('"' + ultimaTeclaPulsada + '" NO se acepta. Vacío el campo');
+        console.log('this.palabraInput: ' + this.palabraInput);
+    }
+    else {
+      console.error('"' + ultimaTeclaPulsada + '" SÍ se acepta. Vacío el campo y proceso la palabra');
+      this.palabraInput = this.palabraInput.toUpperCase();
+      console.log('this.palabraInput: ' + this.palabraInput);
+    }
   }
 
 
