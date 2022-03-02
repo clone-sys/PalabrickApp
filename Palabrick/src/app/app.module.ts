@@ -15,6 +15,7 @@ import { CreditosComponent } from './components/creditos/creditos.component';
 import { AjustesComponent } from './components/ajustes/ajustes.component';
 import { TableroComponent } from './components/juego/tablero/tablero.component';
 import { TecladoComponent } from './components/juego/teclado/teclado.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { TecladoComponent } from './components/juego/teclado/teclado.component';
     AppRoutingModule,
     BrowserModule,
     FormsModule,
-    IonicModule.forRoot()
+    IonicModule.forRoot(),
+    HttpClientModule
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
