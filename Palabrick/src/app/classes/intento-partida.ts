@@ -1,5 +1,5 @@
 export class IntentoPartida {
-    
+
     // Propiedades ==================================================
 
     palabra: string;
