@@ -10,10 +10,8 @@ export class ToolbarOptionsService {
   private toolbarOptionsSource = new Subject<ToolbarOptions>();
   newToolbarOptions: Observable<ToolbarOptions> = this.toolbarOptionsSource.asObservable();
 
-  constructor() { }
-
   // Emisor del evento
-  changeToolbarOptions(toolbarOptions: ToolbarOptions) {
+  changeToolbarOptions(toolbarOptions: ToolbarOptions): void {
     this.toolbarOptionsSource.next(toolbarOptions);
   }
 }

@@ -17,6 +17,7 @@ import { AjustesComponent } from './components/ajustes/ajustes.component';
 import { TableroComponent } from './components/juego/tablero/tablero.component';
 import { TecladoComponent } from './components/juego/teclado/teclado.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [BrowserModule, IonicModule.forRoot(),IonicStorageModule.forRoot({
     name: '__mydb'
     ,driverOrder: [Drivers.SecureStorage, Drivers.IndexedDB, Drivers.LocalStorage]
-  }),AppRoutingModule,HttpClientModule],
+  }),AppRoutingModule,HttpClientModule,FormsModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

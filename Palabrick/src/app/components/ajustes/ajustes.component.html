@@ -4,12 +4,12 @@
   </ion-list-header>
   <ion-item>
     <ion-label>Dark Mode</ion-label>
-    <ion-toggle slot="end"></ion-toggle>   
+    <ion-toggle slot="end" [(ngModel)]="settingsOption.darkMode"></ion-toggle>   
   </ion-item>
 
   <ion-item>
     <ion-label>Accesibility</ion-label>
-    <ion-toggle slot="start" [(ngModel)]="settingsOption"></ion-toggle> 
+    <ion-toggle slot="end" [(ngModel)]="settingsOption.accessibility"></ion-toggle> 
   </ion-item>
 
   <ion-list-header lines="inset">
@@ -17,13 +17,14 @@
   </ion-list-header>
   <ion-item>
     <ion-label>Hard Mode</ion-label>
-    <ion-toggle slot="start"></ion-toggle>   
+    <ion-toggle slot="end" [(ngModel)]="settingsOption.hardMode"></ion-toggle>   
   </ion-item>
   <ion-item>
     <ion-label>Save state game</ion-label>
-    <ion-toggle slot="start"></ion-toggle>   
+    <ion-toggle slot="end" [(ngModel)]="settingsOption.saveStategame"></ion-toggle>   
   </ion-item>
   <ion-item>
-    <ion-input type="number" min="0" placeholder="Insert max number of retries"></ion-input>   
+    <ion-input type="number" min="0" placeholder="Insert max number of retries" [(ngModel)]="settingsOption.numretries"></ion-input>   
   </ion-item>
 </ion-list>
+<ion-button shape="round" fill="outline" (click)="saveSettings()">Guardar ajustes</ion-button>
