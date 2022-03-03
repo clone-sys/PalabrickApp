@@ -12,7 +12,17 @@ export class IntentoPartida {
 
     // Métodos ==================================================
 
-    constructor(palabra: string, letra1: number, letra2: number, letra3: number, letra4: number, letra5: number, ) {
+    constructor() {
+        this.palabra = '';
+        this.letra1 = 2;
+        this.letra2 = 2;
+        this.letra3 = 2;
+        this.letra4 = 2;
+        this.letra5 = 2;
+    }
+
+
+    cargarIntento( palabra: string, letra1: number, letra2: number, letra3: number, letra4: number, letra5: number ) {
         this.palabra = palabra;
         this.letra1 = letra1;
         this.letra2 = letra2;

@@ -1,3 +1,12 @@
-<p>
-  tablero works!
-</p>
+<!--//TODO: HACER FOR SOBRE TABLERO-->
+<div class="main-div">
+    <div class="row" *ngFor="let fila of tablero; let i = index">
+        <div class="casilla" [class]="this.tablero[i][j].estado" *ngFor="let columna of fila; let j = index">
+            {{this.tablero[i][j].letra}}
+        </div>
+    </div>
+</div>
+
+
+
+
