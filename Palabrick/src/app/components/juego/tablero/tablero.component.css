@@ -1,0 +1,29 @@
+.row{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.casilla{
+    border: 1px solid #000;
+    width: 4rem;
+    height: 4rem;
+    margin: .2rem;
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
+    line-height: 3.5rem;
+}
+
+.estado2{
+    background-color: #FBF7F0;
+}
+.estado-1{
+    background-color: #F6A942;
+}
+.estado1{
+    background-color: #00C2CB;
+}
+.estado0{
+    background-color: #545454;
+    color: #FBF7F0;
+}

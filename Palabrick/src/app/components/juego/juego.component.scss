@@ -1,0 +1,21 @@
+button {
+    padding: 10px;
+}
+
+.tecla {
+    display: inline-block;
+    border: 2px solid #000;
+    min-width: 9.4%;
+    margin: 0 0.2rem 0.5rem 0;
+    padding: 1rem;
+    cursor: pointer;
+    text-align: center;
+}
+
+.tecla:hover {
+    background-color: #999;
+}
+
+.ENVIAR, .« {
+    min-width: 14.3%;
+}

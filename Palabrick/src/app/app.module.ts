@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from "@angular/forms"
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
+import { IonicStorageModule } from '@ionic/storage-angular';
+import { Drivers } from '@ionic/storage';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { JuegoComponent } from './components/juego/juego.component';
@@ -14,6 +17,7 @@ import { CreditosComponent } from './components/creditos/creditos.component';
 import { AjustesComponent } from './components/ajustes/ajustes.component';
 import { TableroComponent } from './components/juego/tablero/tablero.component';
 import { TecladoComponent } from './components/juego/teclado/teclado.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,7 +32,17 @@ import { TecladoComponent } from './components/juego/teclado/teclado.component';
     AjustesComponent
   ],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [
+    AppRoutingModule,
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    IonicModule.forRoot(),
+    IonicStorageModule.forRoot({
+      name: '__mydb',
+      driverOrder: [Drivers.SecureStorage, Drivers.IndexedDB, Drivers.LocalStorage]
+    })
+  ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
