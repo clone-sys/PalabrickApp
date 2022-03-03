@@ -5,6 +5,8 @@ import { RouteReuseStrategy } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
+import { IonicStorageModule } from '@ionic/storage-angular';
+import { Drivers } from '@ionic/storage';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { JuegoComponent } from './components/juego/juego.component';
@@ -30,6 +32,11 @@ import { HttpClientModule } from '@angular/common/http';
     AjustesComponent
   ],
   entryComponents: [],
+  imports: [BrowserModule, IonicModule.forRoot(),IonicStorageModule.forRoot({
+    name: '__mydb'
+    ,driverOrder: [Drivers.SecureStorage, Drivers.IndexedDB, Drivers.LocalStorage]
+  }),AppRoutingModule,HttpClientModule,FormsModule],
+
   imports: [
     AppRoutingModule,
     BrowserModule,
