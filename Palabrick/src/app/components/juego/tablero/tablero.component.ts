@@ -41,6 +41,7 @@ export class TableroComponent implements OnInit {
         console.log('estado ' + i + j + ' ' + this.tablero[i][j].estado);
       }
     }
+
   }
 
   //Creamos tablero
@@ -69,9 +70,28 @@ export class TableroComponent implements OnInit {
     }
   }
 
+
+  refrescarTablero(){
+    for(let i = 0; i < TableroComponent.MAX_INTENTOS; i++){
+      for(let j = 0; j < TableroComponent.LONG_PALABRA; j++){
+        if(this.json_partida['intentos'][i]){
+          this.tablero[i][j].letra = this.json_partida['intentos'][i]['palabra'][j];
+          this.tablero[i][j].estado = 'estado' +this.json_partida['intentos'][i]['letra'+(j+1)];
+          console.log(this.tablero[i][j].letra + ' + ' + this.tablero[i][j].estado );
+        }else{
+          this.tablero[i][j].letra = '';
+          this.tablero[i][j].estado = 'estado2';
+          console.log(this.tablero[i][j].letra + ' + ' + this.tablero[i][j].estado );
+        }
+
+      }
+    }
+  }
+
+
 //Funcion para hacer pruebas de tablero de forma independiente
-  /*
-  jsonDePrueba(){
+  
+  /*jsonDePrueba(){
     let partidaEnCurso_json = '{"resultado": 3,"fecha_inicio": 11434394903000,"fecha_fin": 11434395323000,"intentos": [{"palabra": "HELIO","letra1": 1,"letra2": -1,"letra3": 0,"letra4": 0,"letra5": 1},{"palabra": "FIDEO","letra1": 0,"letra2": 0,"letra3": 0,"letra4": -1,"letra5": -1},{"palabra": "HUEVA","letra1": 1,"letra2": 1,"letra3": 1,"letra4": 1,"letra5": -1}]}';
     let partidaEnCurso_array = JSON.parse(partidaEnCurso_json);
     console.log('intentos' + partidaEnCurso_json);
