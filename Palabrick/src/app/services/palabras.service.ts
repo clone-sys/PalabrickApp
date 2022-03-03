@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/consistent-type-assertions */
-/* eslint-disable @typescript-eslint/member-ordering */
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -14,15 +12,17 @@ export class PalabrasService {
   // Array de palabras del diccionario
   public palabras: Array<string> = [];
 
-  public readyStatus = false;
+  public fileLoaded = false;
 
   // Palabra objetivo
   private palabraActual: string = "";
 
+  public readyStatus = false;
 
   constructor(private http: HttpClient) {
 
-    this.obtenerFicheroPalabras();
+    console.log("Constructor")
+    //this.obtenerFicheroPalabras(); //.subscribe(json => this.palabras = json);
 
   }
 
@@ -38,13 +38,14 @@ export class PalabrasService {
    */
   public async obtenerFicheroPalabras(): Promise<void> {
 
-    this.readyStatus = false;
+    this.fileLoaded = false;
 
     //this.http.get<Array<string>>(URL_SERVIDOR).subscribe(json => this.palabras = json);
       await fetch(URL_SERVIDOR)
         .then(response => response.json()
         .then(data => this.palabras = data))
         .then(() => this.readyStatus = true)
+        .then(() => console.log("Completado"))
         .catch(err => console.log(err));
 
   }
@@ -58,115 +59,119 @@ export class PalabrasService {
 
     const numero = Math.floor(Math.random() * (this.palabras.length));
 
+    //console.log(this.palabras)
     let p = this.palabras[numero];
+    //console.log(p)
 
     return p;
   }
 
-  /**
-   * Comprueba si una letra coincide o no
-   *
-   * Si la letra coincide con la misma posicion en el array objetivo retornamos 1, 0 si no lo hace
-   * y -1 si la letra esta en el array pero no en esa posicion
-   *
-   * @param letra letra a verificar
-   * @param indice indice a procesar en el array objetivo
-   * @param a array con la palabra de jugador. No usado pero necesario para el map
-   * @returns number 1, 0 o -1
-   */
-  private comprobarLetra(letra: string, indice: number, a: Array<string>) {
-
-     const letrasActuales = this.palabraActual.split('');
-
-
-    if (letra == letrasActuales[indice] ) {
-      //console.log(`${letra} : 1`);
-      return 1;
-    }
-    else {
-      if (letrasActuales.includes(letra)) {
-        //console.log(`${letra} : -1`);
-        return -1
-      }
-      else {
-        //console.log(`${letra} : 0`);
-        return 0;
-      }
-    }
+  private noEsta(letra: string, aObjetivo: string) {
+    return !aObjetivo.includes(letra);
   }
 
-  /**
-   * Busca una letra en el array objetivo para cancelar
-   *
-   * Se cancela insertando el indice cancelado en el array de semiaciertosIndices
-   * Si ya existe un semiacierto cancelado, subsecuentes busquedas retornaran 0
-   *
-   * @param letra letra a buscar
-   * @param pos posicion desde la que buscar
-   * @returns number 0 o -1
-   */
-   private buscarValido(letra: string, array: number[],  pos: number): any {
 
-    // Arry de letras objetivo
-    const letras = this.palabraActual.toUpperCase().split('');
-
-    let n =-1;
-
-    // Obtenemos el indice de la siguiente letra
-    if (pos < array.length) {
-      n = letras.indexOf(letra, pos + 1);
-    }
-    else {
-      n = letras.indexOf(letra, 0);
-
-      if (n == array.length -1) {
-        n =-1;
-      }
-    }
-
-    if (n == -1) {
-      return -1;
-    }
-    else {
-
-      if (this.semiaciertosIndice.includes(n)) {
-        return this.buscarValido(letra, array,  n + 1);
-      }
-      else {
-        if (array[n] == 1) {
-          this.semiaciertosIndice.push(n);
-          return 0;
-        }
-        else {
-          return -1;
-        }
-
-      }
-    }
+  private estaEnPosicion(letra: string, pos: number, aObjetivo: string) {
+    return aObjetivo.split('')[pos] == letra;
   }
 
-  /**
-   * Corrige los semiaciertos
-   *
-   * Si una posiciion determinada es un semiacierto realiza una busqueda para obtener el resultado corregido
-   * En caso contrario, retorna el resultado que hubiere
-   *
-   * @param pjugador array con la palabra del jugador
-   * @param presultado array con el resultado Wordle
-   * @returns number[] array con el resultado extendido
-   */
-  private repeticiones(pjugador: string[], presultado: number[]): number[] {
+  private estaEnOtraPosicion(letra: string, aObjetivo: string) {
+    return aObjetivo.includes(letra);
+  }
 
-    this.semiaciertosIndice = [];
+  private cancelarPosicion(pos: number) {
+    this.semiaciertosIndice.push(pos);
+    console.log(this.semiaciertosIndice)
+  }
 
-    // Si es un semiacierto buscamos a quien cancela. Retorna -1 si cancela a una letra o 0 si no lo hace
-    const res = presultado.map((item, index, array) => item == -1 ? this.buscarValido(pjugador[index], array, 0) : item);
+  private sePuedeCancelar(pos: number) {
+    return !this.semiaciertosIndice.includes(pos);
+  }
+
+  private esIgualAPosicion(aPalabra: string, posicion: number, aObjetivo: string) {
+    return (aObjetivo[posicion] == aPalabra[posicion]);
+  }
+
+  private posicionesLetra(letra: string, aObjetivo: string): number[] {
+
+    let aPosiciones = [];
+
+    for(let i = 0; i < aObjetivo.length; i++) {
+
+      if (aObjetivo[i] == letra) {
+        aPosiciones.push(i);
+      }
+    }
+
+    return aPosiciones;
+  }
+
+  private siguienteSinCancelar(aPosiciones: number[]): number {
+
+    let res = -1;
+
+    for(let n of aPosiciones) {
+      if (!this.semiaciertosIndice.includes(n) && res == -1) {
+        res = n;
+      }
+    }
 
     return res;
   }
 
+  private comprobar(letra: string, indice: number, a: Array<string>) {
+
+    if (this.noEsta(letra, this.palabraActual)) {
+      console.log("No esta la " + letra);
+      return 0;
+    }
+
+    if(this.estaEnPosicion(letra, indice, this.palabraActual)) {
+      console.log("La " + letra + " esta en posicion");
+      return 1;
+    }
+
+    if (this.estaEnOtraPosicion(letra, this.palabraActual)) {
+
+      console.log("La " + letra + " esta en OTRA posicion");
+
+      const posiciones: number[] = this.posicionesLetra(letra, this.palabraActual);
+
+      console.log("La letra " + letra + " esta en las posiciones " + posiciones);
+
+      let siguiente = this.siguienteSinCancelar(posiciones);
+
+      console.log(siguiente)
+      if (siguiente > -1) {
+        if(this.sePuedeCancelar(siguiente) && !this.esIgualAPosicion(a.join(''), siguiente, this.palabraActual))
+        {
+          console.log("La " + letra + " cancela la repeticion en " + siguiente);
+          this.cancelarPosicion(siguiente);
+          return -1;
+        }
+        else {
+          console.log("La " + letra + " no cancela repeticion");
+
+          return 0;
+        }
+      }
+
+      console.log("Sale por el if de estarEnOtraPosicion");
+      return 0;
+    }
+    else {
+      console.log("Sale por el else de estarEnOtraPosicion");
+      return 0;
+    }
+
+  }
+
+
   // Interfaz publica.
 
+  storeArray(a: string[]) {
+    this.palabras = a;
+  }
   /**
    * Obtiene una palabra del diccionario y la pone en juego
    *
@@ -179,9 +184,24 @@ export class PalabrasService {
     this.palabraActual = this.obtenerPalabraRandom();
     this.semiaciertosIndice = [];
 
+    console.log(this.palabraActual);
+
     return this.palabraActual;
 
   }
+
+  /**
+   * Fuerza a que se juegue con la palabra pasada como parametro
+   *
+   * @param palabra palabra a forzar
+   */
+  public forzarPalabra(palabra: string) {
+
+    this.palabraActual = palabra;
+    this.semiaciertosIndice = [];
+
+  }
+
 
   /**
    * Comprueba la palabra
@@ -189,25 +209,16 @@ export class PalabrasService {
    * Comprueba las letras de la palabra pasada contra la palabra almacenada en @palabraActual
    *
    * @param palabra La palabra a validar
-   * @param metodoExtendido Usa el metodo extendido
    *
    * @returns
    **/
-  public validarPalabra(palabra: string, metodoExtendido: boolean = false): Array<number> {
+  public validarPalabra(palabra: string): Array<number> {
 
     const palabras = palabra.toUpperCase().split('');
 
+    this.semiaciertosIndice = [];
 
-    // Comprobamos las letras, nos da un resultado "en bruto"
-    let resultados = <Array<number>>  palabras.map((l,i,a) => this.comprobarLetra(l,i,a));
-
-    //console.log(resultados);
-
-    // Refinamos los resultados
-    if (metodoExtendido) {
-      resultados = this.repeticiones(palabras, resultados);
-      //console.log(resultados);
-    }
+    let resultados = <Array<number>>  palabras.map((l,i,a) => this.comprobar(l,i,a));
 
     return resultados;
   }
@@ -221,9 +232,12 @@ export class PalabrasService {
    **/
   public comprobarPalabra(pal: string): boolean {
 
-    const i = this.palabras.includes(pal.toUpperCase());
+    //console.log(pal)
+    //const i = this.palabras.includes(pal.toUpperCase());
+    return true;
+    //console.log(i);
 
-    return i;
+    //return i;
 
   }
 }
