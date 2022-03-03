@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { ToolbarOptions } from './services/toolbar-options';
+import { ToolbarOptions } from './classes/toolbar-options';
 import { ToolbarOptionsService } from './services/toolbar-options.service';
 
 
@@ -34,14 +34,14 @@ export class AppComponent {
         Object.keys(toolbarOptions).forEach(keyTO => {
           Object.keys(this.gamePages).forEach(keyGP => {
             if( this.gamePages[keyGP].name == keyTO ) {
-              console.log('Actualizando la setting ' + this.gamePages[keyGP].name + ' de ' + this.gamePages[keyGP].showToolbar + ' a ' + toolbarOptions[keyTO]);
+              //console.log('Actualizando la setting ' + this.gamePages[keyGP].name + ' de ' + this.gamePages[keyGP].showToolbar + ' a ' + toolbarOptions[keyTO]);
               this.gamePages[keyGP].showToolbar = toolbarOptions[keyTO];
             }
           });
 
           Object.keys(this.miscPages).forEach(keyMP => {
             if( this.miscPages[keyMP].name == keyTO ) {
-              console.log('Actualizando la setting ' + this.miscPages[keyMP].name + ' de ' + this.miscPages[keyMP].showToolbar + ' a ' + toolbarOptions[keyTO]);
+              //console.log('Actualizando la setting ' + this.miscPages[keyMP].name + ' de ' + this.miscPages[keyMP].showToolbar + ' a ' + toolbarOptions[keyTO]);
               this.miscPages[keyMP].showToolbar = toolbarOptions[keyTO];
             }
           });

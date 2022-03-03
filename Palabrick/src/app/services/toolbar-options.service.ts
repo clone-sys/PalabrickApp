@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { ToolbarOptions } from './toolbar-options';
+import { ToolbarOptions } from '../classes/toolbar-options';
 
 @Injectable({
   providedIn: 'root'

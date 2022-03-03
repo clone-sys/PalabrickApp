@@ -1,6 +1,15 @@
-<p>
-  juego works!
-
-  <app-tablero></app-tablero>
-  <app-teclado></app-teclado>
-</p>
+<p>juego works!</p>
+<br><br><br>
+<p></p>
+<p></p>
+<br>
+<div id="teclado">
+  <div *ngFor="let tecla of teclado_linea1" class="tecla" [class]="tecla" (click)="pulsarTecla($event)">{{tecla}}</div>
+  <br>
+  <div *ngFor="let tecla of teclado_linea2" class="tecla" [class]="tecla" (click)="pulsarTecla($event)">{{tecla}}</div>
+  <br>
+  <div *ngFor="let tecla of teclado_linea3" class="tecla" [class]="tecla" (click)="pulsarTecla($event)">{{tecla}}</div>
+</div>
+<br><br><br>
+<app-tablero></app-tablero>
+<app-teclado></app-teclado>

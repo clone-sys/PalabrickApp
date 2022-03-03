@@ -8,7 +8,7 @@
         <ion-menu-toggle auto-hide="false" *ngFor="let e of gamePages; let i = index">
           <ion-item routerDirection="root" [routerLink]="[e.url]" lines="none" detail="false" routerLinkActive="selected">
             <ion-icon slot="start" [ios]="e.icon + '-outline'" [md]="e.icon + '-sharp'"></ion-icon>
-            <ion-label>{{ e.title }}</ion-label>
+            <ion-label>{{e.title}}</ion-label>
           </ion-item>
         </ion-menu-toggle>
       </ion-list>
@@ -17,7 +17,7 @@
         <ion-menu-toggle auto-hide="false" *ngFor="let e of miscPages; let i = index">
           <ion-item routerDirection="root" [routerLink]="[e.url]" lines="none" detail="false" routerLinkActive="selected">
             <ion-icon slot="start" [ios]="e.icon + '-outline'" [md]="e.icon + '-sharp'"></ion-icon>
-            <ion-label>{{ e.title }}</ion-label>
+            <ion-label>{{e.title}}</ion-label>
           </ion-item>
         </ion-menu-toggle>
       </ion-list>
@@ -30,10 +30,10 @@
       </ion-buttons>
       <ion-title>Palabrick</ion-title>
       <span slot="end" *ngFor="let e of gamePages; let i = index">
-        <a *ngIf="e.showToolbar === true" class="nav-link" [title]="e.title" routerDirection="root" routerLinkActive="active" [routerLink]="[e.url]"><ion-icon class="toolbar-icon" [alt]="e.title" [ios]="e.icon + '-outline'" [md]="e.icon + '-sharp'"></ion-icon></a>
+        <a *ngIf="e.showToolbar === true" class="nav-link" [title]="e.title" routerDirection="root" routerLinkActive="active" [routerLink]="[e.url]"><ion-icon class="toolbar-icon" [ios]="e.icon + '-outline'" [md]="e.icon + '-sharp'"></ion-icon></a>
       </span>
       <span slot="end" *ngFor="let e of miscPages; let i = index">
-        <a *ngIf="e.showToolbar === true" class="nav-link" [title]="e.title" routerDirection="root" routerLinkActive="active" [routerLink]="[e.url]"><ion-icon class="toolbar-icon" [alt]="e.title" [ios]="e.icon + '-outline'" [md]="e.icon + '-sharp'"></ion-icon></a>
+        <a *ngIf="e.showToolbar === true" class="nav-link" [title]="e.title" routerDirection="root" routerLinkActive="active" [routerLink]="[e.url]"><ion-icon class="toolbar-icon" [ios]="e.icon + '-outline'" [md]="e.icon + '-sharp'"></ion-icon></a>
       </span>
     </ion-toolbar>
   </ion-header>

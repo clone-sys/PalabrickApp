@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from "@angular/forms"
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -17,7 +18,6 @@ import { AjustesComponent } from './components/ajustes/ajustes.component';
 import { TableroComponent } from './components/juego/tablero/tablero.component';
 import { TecladoComponent } from './components/juego/teclado/teclado.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ToolbarOptions } from 'src/app/classes/toolbar-options';
 import StorageService from 'src/app/services/storage.service';
-import { ToolbarOptions } from 'src/app/services/toolbar-options';
+
 import { ToolbarOptionsService } from 'src/app/services/toolbar-options.service';
 import { Settings } from 'src/app/settings';
 
