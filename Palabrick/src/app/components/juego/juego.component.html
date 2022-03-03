@@ -1,6 +1,6 @@
 <p>{{partidaEnCurso.intentos.length}} / 6</p>
-<p>Fecha inicio: {{partidaEnCurso.fecha_inicio != 0 ? partidaEnCurso.fecha_inicio : '' | date}}</p>
-<p>Fecha fin: {{partidaEnCurso.fecha_fin != 0 ? partidaEnCurso.fecha_fin : '' | date}}</p>
+<p>Fecha inicio: {{partidaEnCurso.fecha_inicio !== 0 ? partidaEnCurso.fecha_inicio : '' | date}}</p>
+<p>Fecha fin: {{partidaEnCurso.fecha_fin !== 0 ? partidaEnCurso.fecha_fin : '' | date}}</p>
 <p>Letras de este intento: {{partidaEnCurso.intentos[partidaEnCurso.intentos.length-1].palabra}}</p>
 <app-tablero></app-tablero>
 <br>

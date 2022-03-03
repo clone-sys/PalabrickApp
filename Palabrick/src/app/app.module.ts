@@ -32,18 +32,17 @@ import { HttpClientModule } from '@angular/common/http';
     AjustesComponent
   ],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(),IonicStorageModule.forRoot({
-    name: '__mydb'
-    ,driverOrder: [Drivers.SecureStorage, Drivers.IndexedDB, Drivers.LocalStorage]
-  }),AppRoutingModule,HttpClientModule,FormsModule],
-
- /* imports: [
+  imports: [
     AppRoutingModule,
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     IonicModule.forRoot(),
-    HttpClientModule
-  ],*/
+    IonicStorageModule.forRoot({
+      name: '__mydb',
+      driverOrder: [Drivers.SecureStorage, Drivers.IndexedDB, Drivers.LocalStorage]
+    })
+  ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

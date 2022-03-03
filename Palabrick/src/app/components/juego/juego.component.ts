@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { ToastController } from '@ionic/angular';
 import { Partida } from 'src/app/classes/partida';
 import { ToolbarOptions } from 'src/app/classes/toolbar-options';
 import { PalabrasService } from 'src/app/services/palabras.service';
@@ -22,17 +23,16 @@ export class JuegoComponent implements OnInit {
   toolbarOptions: ToolbarOptions;
   partidaEnCurso: Partida;
   partidaEnCurso_json: string;
-  palabra: string;
-  tecla: string;
-  palabraInput: string;
   teclado_linea1: string[];
   teclado_linea2: string[];
   teclado_linea3: string[];
 
+  @ViewChild(TableroComponent) tablero:TableroComponent;
+
 
   // Métodos ==================================================
 
-  constructor(public ToolbarOptionsService:ToolbarOptionsService, public PalabrasService:PalabrasService, public TecladoService:TecladoService) {
+  constructor(public ToolbarOptionsService:ToolbarOptionsService, public PalabrasService:PalabrasService, public TecladoService:TecladoService, public toastController: ToastController) {
     this.toolbarOptions = new ToolbarOptions();
     this.toolbarOptions.game = false;
     this.toolbarOptions.lastGame = true;
@@ -43,9 +43,6 @@ export class JuegoComponent implements OnInit {
     this.toolbarOptions.settings = true;
     
     this.partidaEnCurso = new Partida();
-    this.palabra = '';
-    this.tecla = 'A';
-    this.palabraInput = '';
 
     this.teclado_linea1 = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'];
     this.teclado_linea2 = ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Ñ'];
@@ -53,6 +50,7 @@ export class JuegoComponent implements OnInit {
 
     this.TecladoService_subscription = this.TecladoService.nuevaTeclaPulsada.subscribe(
       teclaPulsada => {
+        //console.log('Desde el servicio se ha recibido una pulsación de la tecla ' + teclaPulsada);
         this.procesarTecla(teclaPulsada);
     });
 
@@ -64,23 +62,36 @@ export class JuegoComponent implements OnInit {
 
 
   ngOnInit() {
+    console.log('Actualizando Toolbar');
     this.ToolbarOptionsService.changeToolbarOptions(this.toolbarOptions);
+    
     console.log(this.partidaEnCurso);
     this.recuperarPartidaDeStorage('partidaEnCurso');
     console.log(this.partidaEnCurso);
-    console.log(localStorage.getItem('AlgoQueNoExiste')===null);
+    
+    console.log('Llamando a obtenerFicheroPalabras');
+    this.PalabrasService.obtenerFicheroPalabras().then(() => {
+      if( this.partidaEnCurso.palabra == '' ) {
+        console.log('Llamando a obtenerPalabra');
+        this.partidaEnCurso.palabra = this.PalabrasService.obtenerPalabra();
+      }
+      else {
+        console.log('Forzando palabra');
+        this.PalabrasService.forzarPalabra(this.partidaEnCurso.palabra);
+      }
+
+      this.guardarPartidaEnStorage('partidaEnCurso');
+    });
+
+    console.log('this.partidaEnCurso.palabra: ' + this.partidaEnCurso.palabra);
   }
 
 
   pulsarTecla(event) {
-    let teclita = event.target;
-    //console.log(teclita.firstChild.textContent);
-    this.procesarTecla(teclita.firstChild.textContent);
-  }
-
-
-  enviarPalabra() {
-
+    let tecla = event.target.firstChild.textContent;
+    //console.log(tecla);
+    //this.procesarTecla(tecla);              // Pulsar tecla llamando directamente a función
+    this.TecladoService.teclaPulsada(tecla);  // Pulsar tecla llamando al servicio
   }
 
 
@@ -94,10 +105,12 @@ export class JuegoComponent implements OnInit {
 
       if( this.partidaEnCurso.intentos[this.partidaEnCurso.intentos.length-1].palabra.length == 5 ) {
         console.log('Tiene 5 letras. Enviando');
+        console.log(this.PalabrasService.comprobarPalabra(this.partidaEnCurso.intentos[this.partidaEnCurso.intentos.length-1].palabra));
+        console.log(this.PalabrasService.validarPalabra(this.partidaEnCurso.intentos[this.partidaEnCurso.intentos.length-1].palabra));
       }
       else {
         console.log('Faltan letras por introducir');
-        alert('Faltan letras por introducir');
+        this.mostrarToast('Faltan letras por introducir');
       }
     }
     else if( tecla == '«' ) {
@@ -109,7 +122,7 @@ export class JuegoComponent implements OnInit {
       }
       else {
         console.log('Nada que borrar');
-        alert('No hay nada que borrar');
+        this.mostrarToast('No hay nada que borrar');
       }
     }
     else if( pattern.test(tecla) ) {
@@ -120,14 +133,17 @@ export class JuegoComponent implements OnInit {
         this.partidaEnCurso.intentos[this.partidaEnCurso.intentos.length-1].palabra += tecla;
       }
       else {
-        alert('La palabra ya tiene 5 letras')
+        this.mostrarToast('La palabra ya tiene 5 letras')
       }
     }
     else {
       // invalid character, prevent input
       console.error('"' + tecla + '" NO se acepta. Aviso con un toast');
-      alert('La tecla "' + tecla + '" no es válida.');
+      this.mostrarToast('La tecla "' + tecla + '" no es válida.');
     }
+
+    this.guardarPartidaEnStorage('partidaEnCurso');
+    this.tablero.actualizaTablero();
   }
 
 
@@ -165,5 +181,16 @@ export class JuegoComponent implements OnInit {
     else {
         console.error('El tipo de partida "' + tipoPartida + '" a recuperar no es correcto');
     }
+  }
+
+
+  async mostrarToast(mensaje: string) {
+    const toast = await this.toastController.create({
+      message: mensaje,
+      icon: 'information-circle',
+      position: 'top',
+      duration: 2000
+    });
+    toast.present();
   }
 }

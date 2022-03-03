@@ -4,6 +4,7 @@ export class Partida {
 
     // Propiedades ==================================================
 
+    palabra: string;
     resultado: number;
     fecha_inicio: number;
     fecha_fin: number;
@@ -13,13 +14,14 @@ export class Partida {
     // Métodos ==================================================
 
     constructor() {
+        this.palabra = '';
         this.resultado = 0;
         this.fecha_inicio = 0;
         this.fecha_fin = 0;
         this.intentos = [];
 
         let intento = new IntentoPartida();
-        intento.palabra = 'A';
+        intento.palabra = 'HERNI';
         this.intentos[0] = intento;
     }
 
@@ -33,7 +35,7 @@ export class Partida {
     }
 
 
-    insertarIntento(intento: IntentoPartida, posicion: string, enviar: boolean) {
+    insertarIntento(intento: IntentoPartida, posicion: string, enviar: boolean ) {
         this.intentos[posicion] = intento;
         
         // Si estoy enviando
