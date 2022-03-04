@@ -130,9 +130,9 @@ export class JuegoComponent implements OnInit {
             this.partidaEnCurso.insertarIntento(intento, this.partidaEnCurso.intentos.length-1, true);
             console.log(this.partidaEnCurso.intentos);
             
-            if( this.partidaEnCurso.intentos.length < 6 ) {
+            if( this.partidaEnCurso.fecha_fin == 0 && this.partidaEnCurso.intentos.length < 6 ) {
               intento = new IntentoPartida();
-              this.partidaEnCurso.insertarIntento(intento, this.partidaEnCurso.intentos.length, true);
+              this.partidaEnCurso.insertarIntento(intento, this.partidaEnCurso.intentos.length, false);
               console.log(this.partidaEnCurso.intentos);
             }
             

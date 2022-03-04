@@ -1,8 +1,13 @@
-<p>{{partidaEnCurso.intentos.length}} / 6</p>
-<p>Fecha inicio: {{partidaEnCurso.fecha_inicio === 0 ? '' : partidaEnCurso.fecha_inicio | date:'HH:mm:ss'}}</p>
-<p>Fecha fin: {{partidaEnCurso.fecha_fin === 0 ? '' : partidaEnCurso.fecha_fin | date:'HH:mm:ss'}}</p>
-<p>Tiempo: {{partidaEnCurso.fecha_fin === 0 ? '' : partidaEnCurso.fecha_fin-partidaEnCurso.fecha_inicio | date:'HH:mm:ss'}}</p>
-<p>Letras de este intento: {{partidaEnCurso.intentos[partidaEnCurso.intentos.length-1].palabra}}</p>
+<p>
+  {{partidaEnCurso.intentos.length}} / 6<br>
+  Inicio: {{partidaEnCurso.fecha_inicio === 0 ? '' : partidaEnCurso.fecha_inicio | date:'HH:mm:ss'}} - 
+  Fin: {{partidaEnCurso.fecha_fin === 0 ? '' : partidaEnCurso.fecha_fin | date:'HH:mm:ss'}} - 
+  Tiempo: {{partidaEnCurso.fecha_fin === 0 ? '' : ((partidaEnCurso.fecha_fin-partidaEnCurso.fecha_inicio)/(60*1000)).toFixed(1)}} minutos<br>
+  </p>
+<p>
+  Letras de este intento: {{partidaEnCurso.intentos[partidaEnCurso.intentos.length-1].palabra}}<br>
+  Intentos: <span *ngFor="let intento of partidaEnCurso.intentos">{{intento.palabra}} - </span>
+</p>
 <app-tablero></app-tablero>
 <br>
 <div id="teclado">

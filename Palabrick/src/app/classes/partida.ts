@@ -35,7 +35,7 @@ export class Partida {
     }
 
 
-    insertarIntento(intento: IntentoPartida, posicion: string, enviar: boolean ) {
+    insertarIntento(intento: IntentoPartida, posicion: number, enviar: boolean ) {
         this.intentos[posicion] = intento;
         
         // Si estoy enviando
