@@ -1,5 +1,5 @@
 <p>
-  {{partidaEnCurso.intentos.length}} / 6<br>
+  Intento: {{partidaEnCurso.intentos.length}} / 6<br>
   Inicio: {{partidaEnCurso.fecha_inicio === 0 ? '' : partidaEnCurso.fecha_inicio | date:'HH:mm:ss'}} - 
   Fin: {{partidaEnCurso.fecha_fin === 0 ? '' : partidaEnCurso.fecha_fin | date:'HH:mm:ss'}} - 
   Tiempo: {{partidaEnCurso.fecha_fin === 0 ? '' : ((partidaEnCurso.fecha_fin-partidaEnCurso.fecha_inicio)/(60*1000)).toFixed(1)}} minutos<br>
