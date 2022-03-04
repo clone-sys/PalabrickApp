@@ -21,7 +21,7 @@ export class Partida {
         this.intentos = [];
 
         let intento = new IntentoPartida();
-        intento.palabra = 'HERNI';
+        intento.palabra = '';
         this.intentos[0] = intento;
     }
 

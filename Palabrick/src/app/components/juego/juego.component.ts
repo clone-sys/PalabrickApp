@@ -8,6 +8,7 @@ import { TecladoService } from 'src/app/services/teclado.service';
 import { ToolbarOptionsService } from 'src/app/services/toolbar-options.service';
 import { TableroComponent } from './tablero/tablero.component';
 import { TecladoComponent } from './teclado/teclado.component';
+import { IntentoPartida } from 'src/app/classes/intento-partida';
 
 @Component({
   selector: 'app-juego',
@@ -81,9 +82,9 @@ export class JuegoComponent implements OnInit {
       }
 
       this.guardarPartidaEnStorage('partidaEnCurso');
+      console.log('this.partidaEnCurso.palabra: ' + this.partidaEnCurso.palabra);
+      this.tablero.refrescarTablero();
     });
-
-    console.log('this.partidaEnCurso.palabra: ' + this.partidaEnCurso.palabra);
   }
 
 
@@ -98,52 +99,92 @@ export class JuegoComponent implements OnInit {
   procesarTecla(tecla: string) {
     //console.log('tecla: ' + tecla);
 
-    const pattern = /[a-zA-Z]/;
-
-    if( tecla == 'ENVIAR' ) {
-      console.log('Intentan enviar. La palabra actual tiene ' + this.partidaEnCurso.intentos[this.partidaEnCurso.intentos.length-1].palabra.length + ' letras');
-
-      if( this.partidaEnCurso.intentos[this.partidaEnCurso.intentos.length-1].palabra.length == 5 ) {
-        console.log('Tiene 5 letras. Enviando');
-        console.log(this.PalabrasService.comprobarPalabra(this.partidaEnCurso.intentos[this.partidaEnCurso.intentos.length-1].palabra));
-        console.log(this.PalabrasService.validarPalabra(this.partidaEnCurso.intentos[this.partidaEnCurso.intentos.length-1].palabra));
-      }
-      else {
-        console.log('Faltan letras por introducir');
-        this.mostrarToast('Faltan letras por introducir');
-      }
-    }
-    else if( tecla == '«' ) {
-      console.log('Intentan borrar la última letra. La palabra actual tiene ' + this.partidaEnCurso.intentos[this.partidaEnCurso.intentos.length-1].palabra.length + ' letras');
-
-      if( this.partidaEnCurso.intentos[this.partidaEnCurso.intentos.length-1].palabra.length > 0 ) {
-        console.log('Hay al menos una letra para borrar en la palabra actual');
-        this.partidaEnCurso.intentos[this.partidaEnCurso.intentos.length-1].palabra = this.partidaEnCurso.intentos[this.partidaEnCurso.intentos.length-1].palabra.substring(0, this.partidaEnCurso.intentos[this.partidaEnCurso.intentos.length-1].palabra.length-1);
-      }
-      else {
-        console.log('Nada que borrar');
-        this.mostrarToast('No hay nada que borrar');
-      }
-    }
-    else if( pattern.test(tecla) ) {
-      console.log('"' + tecla + '" SÍ se acepta. Miro si la palabra aún acepta más letras, si es así añado la palabra.');
-      
-      if( this.partidaEnCurso.intentos[this.partidaEnCurso.intentos.length-1].palabra.length < 5 ) {
-        console.log('Entraría la letra. La añado');
-        this.partidaEnCurso.intentos[this.partidaEnCurso.intentos.length-1].palabra += tecla;
-      }
-      else {
-        this.mostrarToast('La palabra ya tiene 5 letras')
-      }
+    if( this.partidaEnCurso.fecha_fin != 0 ) {
+      this.mostrarToast('La partida ya ha terminado');
     }
     else {
-      // invalid character, prevent input
-      console.error('"' + tecla + '" NO se acepta. Aviso con un toast');
-      this.mostrarToast('La tecla "' + tecla + '" no es válida.');
-    }
+      let guardar = false;
+      let intentoActual = this.partidaEnCurso.intentos[this.partidaEnCurso.intentos.length-1];
+      let palabraActual = intentoActual.palabra;
+      const pattern = /[a-zA-Z]/;
 
-    this.guardarPartidaEnStorage('partidaEnCurso');
-    this.tablero.actualizaTablero();
+      if( tecla == 'ENVIAR' ) {
+        console.log('Intentan enviar. La palabra actual tiene ' + palabraActual.length + ' letras');
+
+        if( palabraActual.length == 5 ) {
+          console.log('Tiene 5 letras. Realizo comprobaciones');
+          
+          console.log(this.PalabrasService.comprobarPalabra(palabraActual));
+          if( !this.PalabrasService.comprobarPalabra(palabraActual) ) {
+            this.mostrarToast('La palabra no existe en el listado de palabras disponibles');
+          }
+          else {
+            console.log(this.PalabrasService.validarPalabra(palabraActual));
+            let colores = this.PalabrasService.validarPalabra(palabraActual);
+
+            console.log(this.partidaEnCurso.intentos);
+
+            let intento: IntentoPartida = new IntentoPartida();
+
+            intento.cargarIntento(intentoActual.palabra, colores[0], colores[1], colores[2], colores[3], colores[4]);
+            this.partidaEnCurso.insertarIntento(intento, this.partidaEnCurso.intentos.length-1, true);
+            console.log(this.partidaEnCurso.intentos);
+            
+            if( this.partidaEnCurso.intentos.length < 6 ) {
+              intento = new IntentoPartida();
+              this.partidaEnCurso.insertarIntento(intento, this.partidaEnCurso.intentos.length, true);
+              console.log(this.partidaEnCurso.intentos);
+            }
+            
+            console.log(this.partidaEnCurso.intentos);
+
+            guardar = true;
+          }
+
+        }
+        else {
+          console.log('Faltan letras por introducir');
+          this.mostrarToast('Faltan letras por introducir');
+        }
+      }
+      else if( tecla == '«' ) {
+        console.log('Intentan borrar la última letra. La palabra actual tiene ' + palabraActual.length + ' letras');
+
+        if( palabraActual.length > 0 ) {
+          console.log('Hay al menos una letra para borrar en la palabra actual');
+          this.partidaEnCurso.intentos[this.partidaEnCurso.intentos.length-1].palabra = palabraActual.substring(0, palabraActual.length-1);
+          guardar = true;
+        }
+        else {
+          console.log('Nada que borrar');
+          this.mostrarToast('No hay nada que borrar');
+        }
+      }
+      else if( pattern.test(tecla) ) {
+        console.log('"' + tecla + '" SÍ se acepta. Miro si la palabra aún acepta más letras, si es así añado la palabra.');
+        
+        if( this.partidaEnCurso.intentos[this.partidaEnCurso.intentos.length-1].palabra.length < 5 ) {
+          console.log('Entraría la letra. La añado');
+          this.partidaEnCurso.intentos[this.partidaEnCurso.intentos.length-1].palabra += tecla;
+          guardar = true;
+        }
+        else {
+          console.log('No entraría la letra. La ignoro');
+          this.mostrarToast('La palabra ya tiene 5 letras')
+        }
+      }
+      else {
+        // invalid character, prevent input
+        console.error('"' + tecla + '" NO se acepta. Aviso con un toast');
+        this.mostrarToast('La tecla "' + tecla + '" no es válida.');
+      }
+
+      if( guardar ) {
+        this.guardarPartidaEnStorage('partidaEnCurso');
+        if( tecla == 'ENVIAR' ) { this.tablero.refrescarTablero(); }
+        else                    { this.tablero.actualizaTablero(); }
+      }
+    }
   }
 
 
