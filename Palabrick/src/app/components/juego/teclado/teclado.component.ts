@@ -14,7 +14,7 @@ export class TecladoComponent implements OnInit {
     asigna_Color: string;
     contadorLetras: number = 0;
     letrasPulsadas: string[] = [];
-
+    
 
 
     constructor(public servicio_com: TecladoService) {

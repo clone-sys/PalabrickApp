@@ -12,7 +12,7 @@ export class ComunicadorService {
 
   constructor() { }
 
-  //"EMISI脫N DEL EVENTO"
+  //"EMISIÓN DEL EVENTO"
   informaTeclaPulsada(tecla: string) {
     this.letraPulsadaSource.next(tecla);
   }
