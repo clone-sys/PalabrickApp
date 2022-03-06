@@ -1,3 +1,82 @@
+<hr>
 <p>
   teclado works!
 </p>
+<p>teclado works!</p>
+
+<!-- <div >
+<div>
+<button mat-raised-button id="pr" (click)="tecla('Q')" >Q</button>
+</div>
+</div> -->
+<br>
+<br>
+<div>
+  <div>
+    <button id="Q" mat-raised-button [style.background-color]="getColor(color)" [style.font-size.em]="1.5"
+      (click)="tecla('Q')">Q</button>
+    <button id="W" mat-raised-button [style.background-color]="getColor(color)" [style.font-size.em]="1.5"
+      (click)="tecla('W')">W</button>
+    <button id="E" mat-raised-button [style.background-color]="getColor(color)" [style.font-size.em]="1.5"
+      (click)="tecla('E')">E</button>
+    <button id="R" mat-raised-button [style.background-color]="getColor(color)" [style.font-size.em]="1.5"
+      (click)="tecla('R')">R</button>
+    <button id="T" mat-raised-button [style.background-color]="getColor(color)" [style.font-size.em]="1.5"
+      (click)="tecla('T')">T</button>
+    <button id="Y" mat-raised-button [style.background-color]="getColor(color)" [style.font-size.em]="1.5"
+      (click)="tecla('Y')">Y</button>
+    <button id="U" mat-raised-button [style.background-color]="getColor(color)" [style.font-size.em]="1.5"
+      (click)="tecla('U')">U</button>
+    <button id="I" mat-raised-button [style.background-color]="getColor(color)" [style.font-size.em]="1.5"
+      (click)="tecla('I')">I</button>
+    <button id="O" mat-raised-button [style.background-color]="getColor(color)" [style.font-size.em]="1.5"
+      (click)="tecla('O')">O</button>
+    <button id="P" mat-raised-button [style.background-color]="getColor(color)" [style.font-size.em]="1.5"
+      (click)="tecla('P')">P</button>
+  </div>
+  <div>
+    <button id="A" mat-raised-button [style.background-color]="getColor(color)" [style.font-size.em]="1.5"
+      (click)="tecla('A')">A</button>
+    <button id="S" mat-raised-button [style.background-color]="getColor(color)" [style.font-size.em]="1.5"
+      (click)="tecla('S')">S</button>
+    <button id="D" mat-raised-button [style.background-color]="getColor(color)" [style.font-size.em]="1.5"
+      (click)="tecla('D')">D</button>
+    <button id="F" mat-raised-button [style.background-color]="getColor(color)" [style.font-size.em]="1.5"
+      (click)="tecla('F')">F</button>
+    <button id="G" mat-raised-button [style.background-color]="getColor(color)" [style.font-size.em]="1.5"
+      (click)="tecla('G')">G</button>
+    <button id="H" mat-raised-button [style.background-color]="getColor(color)" [style.font-size.em]="1.5"
+      (click)="tecla('H')">H</button>
+    <button id="J" mat-raised-button [style.background-color]="getColor(color)" [style.font-size.em]="1.5"
+      (click)="tecla('J')">J</button>
+    <button id="K" mat-raised-button [style.background-color]="getColor(color)" [style.font-size.em]="1.5"
+      (click)="tecla('K')">K</button>
+    <button id="L" mat-raised-button [style.background-color]="getColor(color)" [style.font-size.em]="1.5"
+      (click)="tecla('L')">L</button>
+    <button id="Ñ" mat-raised-button [style.background-color]="getColor(color)" [style.font-size.em]="1.5"
+      (click)="tecla('Ñ')">Ñ</button>
+  </div>
+  <div>
+    <button id="ENVIAR" mat-raised-button [style.background-color]="getColor(color)" [style.font-size.em]="1.5"
+      (click)="tecla('ENVIAR')">enviar</button>
+    <button id="Z" mat-raised-button [style.background-color]="getColor(color)" [style.font-size.em]="1.5"
+      (click)="tecla('Z')">Z</button>
+    <button id="X" mat-raised-button [style.background-color]="getColor(color)" [style.font-size.em]="1.5"
+      (click)="tecla('X')">X</button>
+    <button id="C" mat-raised-button [style.background-color]="getColor(color)" [style.font-size.em]="1.5"
+      (click)="tecla('C')">C</button>
+    <button id="V" mat-raised-button [style.background-color]="getColor(color)" [style.font-size.em]="1.5"
+      (click)="tecla('V')">V</button>
+    <button id="B" mat-raised-button [style.background-color]="getColor(color)" [style.font-size.em]="1.5"
+      (click)="tecla('B')">B</button>
+    <button id="N" mat-raised-button [style.background-color]="getColor(color)" [style.font-size.em]="1.5"
+      (click)="tecla('N')">N</button>
+    <button id="M" mat-raised-button [style.background-color]="getColor(color)" [style.font-size.em]="1.5"
+      (click)="tecla('M')">M</button>
+    <button id="BORRAR" mat-raised-button [style.background-color]="getColor(color)" [style.font-size.em]="1.5"
+      (click)="tecla('BORRAR')">
+      <mat-icon>backspace</mat-icon>
+    </button>
+  </div>
+  <button (click)="botonPintar()">PINTAR</button>
+</div>

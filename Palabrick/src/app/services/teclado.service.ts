@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
-
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TecladoService {
-  // Emisor
-  private tecladoSource = new Subject<string>();
-  nuevaTeclaPulsada: Observable<string> = this.tecladoSource.asObservable();
+export class ComunicadorService {
+
+  //"EMISOR"
+  private letraPulsadaSource = new Subject<string>();
+  teclaPulsada = this.letraPulsadaSource.asObservable();
 
   constructor() { }
 
-  // Emisor del evento
-  teclaPulsada(tecla: string) {
-    this.tecladoSource.next(tecla);
+  //"EMISI脫N DEL EVENTO"
+  informaTeclaPulsada(tecla: string) {
+    this.letraPulsadaSource.next(tecla);
   }
 }
