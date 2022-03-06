@@ -2,14 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import { ToolbarOptions } from 'src/app/classes/toolbar-options';
 import { ToolbarOptionsService } from 'src/app/services/toolbar-options.service';
 
+import { DatoEstadistica } from 'src/app/classes/datoEstadistica';
+import { PalabrickService } from '../../services/palabrick.service';
+
+
+
 @Component({
   selector: 'app-estadisticas',
   templateUrl: './estadisticas.component.html',
   styleUrls: ['./estadisticas.component.scss'],
 })
 export class EstadisticasComponent implements OnInit {
-
+  
   // Propiedades ==================================================
+  test_resultado: DatoEstadistica | null;
+  test_input: number | null = 1;
+  input_partida: DatoEstadistica | null;
+
 
   toolbarOptions: ToolbarOptions;
 

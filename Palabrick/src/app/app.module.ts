@@ -19,6 +19,11 @@ import { TableroComponent } from './components/juego/tablero/tablero.component';
 import { TecladoComponent } from './components/juego/teclado/teclado.component';
 import { HttpClientModule } from '@angular/common/http';
 
+
+import { NgChartsModule } from 'ng2-charts';
+
+import { GraficopalabrickComponent } from './components/estadisticas/graficopalabrick/graficopalabrick.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +34,8 @@ import { HttpClientModule } from '@angular/common/http';
     EstadisticasComponent,
     AyudaComponent,
     CreditosComponent,
-    AjustesComponent
+    AjustesComponent,
+    GraficopalabrickComponent
   ],
   entryComponents: [],
   imports: [
@@ -37,6 +43,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    NgChartsModule,
     IonicModule.forRoot(),
     IonicStorageModule.forRoot({
       name: '__mydb',
